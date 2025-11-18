@@ -1,0 +1,36 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - "8099:8080"
+    volumes:
+      - ./open-webui:/app/backend/data:rw
+    models:
+#      gemma:
+        # this sets the Open WebUI envvars to use the gemma model and the model runner URL
+ #       endpoint_var: OPENAI_API_BASE_URL
+ #       model_var: DEFAULT_MODELS
+    
+      smoll:
+        # this sets the Open WebUI envvars to use the gemma model and the model runner URL
+        endpoint_var: OPENAI_API_BASE_URL
+        model_var: DEFAULT_MODELS
+
+      
+#      qwen:
+        # this sets the Open WebUI envvars to use the gemma model and the model runner URL
+ #       endpoint_var: OPENAI_API_BASE_URL
+ #       model_var: DEFAULT_MODELS
+
+models:
+ # gemma:
+ #   model: ai/gemma3-qat:1B-Q4_K_M # Quantized. Needs 1GB of GPU memory
+    # model: ai/gemma3:4B-F16 # bigger model that needs at least 8GB of GPU memory  
+    # https://hub.docker.com/r/ai/gemma3
+ #   context_size: 33000
+  smoll:
+    model: ai/smollm2:latest
+ # qwen:
+ #   model: ai/qwen2.5:latest
+volumes:
+  open-webui:
